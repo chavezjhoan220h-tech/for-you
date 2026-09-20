@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas para ti 💛</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fffcf0 0%, #fff4cc 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #4a4a4a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px 20px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(212, 160, 23, 0.15);
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(5px);
+            border: 2px solid #ffea8a;
+        }
+
+        .view {
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Vista 1 */
+        .welcome-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #d48806;
+            margin-bottom: 15px;
+        }
+
+        .welcome-text {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .btn-open {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-open:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.6);
+        }
+
+        /* Vista 2: Imagen y Contenido */
+        .img-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #ffc107;
+            box-shadow: 0 8px 20px rgba(212, 160, 23, 0.3);
+            background: #fff;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .friend-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #b7791f;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .message-card {
+            background: #fffdf4;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px dashed #f6e05e;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .message-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .message-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            font-style: italic;
+            font-weight: 600;
+            color: #d69e2e;
+            text-align: right;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Decoración de flores que caen */
+        .flower-fall {
+            position: fixed;
+            top: -10vh;
+            font-size: 20px;
+            animation: fall linear forwards;
+            z-index: 999;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- VISTA 1: Inicio -->
+        <div id="view1" class="view active">
+            <h1 class="welcome-title">💛 Hola, Bri... 💛</h1>
+            <p class="welcome-text">Tengo una pequeña sorpresa muy especial preparada especialmente para ti.</p>
+            <button class="btn-open" onclick="mostrarSorpresa()">Abrir sorpresa 🌻</button>
+        </div>
+
+        <!-- VISTA 2: Foto y Mensaje -->
+        <div id="view2" class="view">
+            <div class="img-container">
+                <!-- Imagen del gatito con flores amarillas -->
+                <img src="https://i.postimg.cc/VsWq2fB8/60a737db26da109e989e737efd1058ff.jpg" alt="Gatito con flores amarillas">
+            </div>
+            
+            <h2 class="friend-name" id="nombreAmiga">¡Para ti, Brigitte! 🌻</h2>
+            
+            <div class="message-card">
+                <p>Hoy quiero regalarte estas flores amarillas porque te mereces lo mejor. Aunque no nos veamos todos los días o andemos ocupados, quiero recordarte lo especial e importante que eres en mi vida.</p>
+                <span class="signature">Con mucho cariño de parte de Jhoan 💛</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function mostrarSorpresa() {
+            // Cambiar de vista suavemente
+            document.getElementById('view1').classList.remove('active');
+            document.getElementById('view2').classList.add('active');
+
+            // Lanzar lluvia de flores amarillas
+            lanzarFlores();
+        }
+
+        function lanzarFlores() {
+            const simbolos = ['🌻', '🌼', '⭐', '💛', '✨'];
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const flower = document.createElement('div');
+                    flower.classList.add('flower-fall');
+                    flower.innerHTML = simbolos[Math.floor(Math.random() * simbolos.length)];
+                    flower.style.left = Math.random() * 100 + 'vw';
+                    flower.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    flower.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                    document.body.appendChild(flower);
+
+                    setTimeout(() => {
+                        flower.remove();
+                    }, 5000);
+                }, i * 150);
+            }
+        }
+    </script>
+</body>
+</html>
